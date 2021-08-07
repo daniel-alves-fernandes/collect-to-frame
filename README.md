@@ -106,4 +106,4 @@ cmdset|coleq|colname|program_class|result|result_type|value
 This command calls a Python function to convert the data (stored in a .stjson file) into a readable format in Stata.
 Please, check if Python is installed on your computer and set up within Stata. These modules are required: `json`, `re`, `pandas`.
 
-*This command does not use the Stata Framework Interface (SFI). It can be used in Jupyter Notebooks with `pystata`.*
+*This command does not use the Stata Framework Interface (SFI). It can be called in any Python environment alongside `pystata`.*
