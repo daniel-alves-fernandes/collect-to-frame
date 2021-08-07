@@ -1,4 +1,4 @@
-# collect_to_frame
+# Collect to Frame
 Collect to Frame puts the information of the active collection onto a new Stata frame.
 
 
