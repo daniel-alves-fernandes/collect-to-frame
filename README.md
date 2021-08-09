@@ -88,7 +88,7 @@ cmdset|coleq|colname|program_class|result|result_type|value
 1|||eclass|Residual DF|Scalar|72
 1|||eclass|Program used to implement estat|Macro|
 1|||eclass|Log likelihood|Scalar|-225.2210496559824
-1|||eclass|"Log likelihood| constant-only model"|Scalar|-234.3943376482347
+1|||eclass|Log likelihood, constant-only model|Scalar|-234.3943376482347
 1|||eclass|Predictions allowed by margins|Macro|
 1|||eclass|Model|Macro|
 1|||eclass|Model sum of squares|Scalar|536.5418070864664
