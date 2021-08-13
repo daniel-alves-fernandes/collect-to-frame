@@ -79,7 +79,7 @@ def collect_to_frame(stjson_file,mode):
     
     # This transformation separates variables in interaction effects and
     # removes times series operators. This needs to be done so labels can
-    # be assined properly.
+    # be assigned properly.
     for col in columns:
       stata_frame[col] = stata_frame[col].apply(lambda x:
 
