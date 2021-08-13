@@ -56,7 +56,7 @@ def collect_to_frame(stjson_file,mode):
 
   # Change the structure of the .stjson file
   for item in contents["Items"].items():
-    dimensions = re.sub(r"\[[\w\d#]*","",item[0]).split("]#")
+    dimensions = re.sub(r"\[[\w\d#]*(\]$)?","",item[0]).split("]#")
     levels = re.sub(r"([\w\d]*\[|(\]$))","",item[0]).split("]#")
 
     line = dict(zip(dimensions,levels))
