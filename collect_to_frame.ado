@@ -1,6 +1,6 @@
 /******************************************************************************
 collectFrame.ado
-version 1.1.1
+version 1.1.2
 
 author: Daniel Fernandes
 contact: daniel.fernandes@eui.eu
@@ -79,11 +79,15 @@ def collect_to_frame(stjson_file,mode):
 
     for col in columns:
       stata_frame[col] = stata_frame[col].apply(lambda x:
-        " # ".join([str(valuelabels.get(col).get(i)) for i in x.split("#")])
+
+        " # ".join([str(valuelabels.get(col).get(i,str(x)))
+          for i in x.split("#")])
+
         if type(x) == str and type(valuelabels.get(col)) == dict
         else x
         )
 
   # Export to .csv
-  stata_frame.to_stata(stjson_file,write_index=False,variable_labels=varlabels)
+  stata_frame.to_stata(stjson_file,
+    write_index=False,variable_labels=varlabels,version=119)
 end
