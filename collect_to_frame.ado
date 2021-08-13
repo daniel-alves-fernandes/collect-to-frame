@@ -1,8 +1,9 @@
 /******************************************************************************
-* collectFrame.ado
+collectFrame.ado
+version 1.1
 
-* author: Daniel Fernandes
-* contact: daniel.fernandes@eui.eu
+author: Daniel Fernandes
+contact: daniel.fernandes@eui.eu
 ******************************************************************************/
 
 capture: program drop collect_to_frame
@@ -74,13 +75,14 @@ def collect_to_frame(stjson_file,mode):
   # Value labels
   if mode=="labels":
     columns.update(["value"])
+    valuelabels = contents["Labels"]["Dimensions"]
 
     for col in columns:
-      labels = contents["Labels"]["Dimensions"].get(col)
-      try:
-        stata_frame[col] = stata_frame[col].map(labels)
-      except:
-        pass
+      stata_frame[col] = stata_frame[col].apply(lambda x:
+        " # ".join([str(valuelabels.get(col,{}).get(i)) for i in x.split("#")])
+        if type(x) == str
+        else x
+        )
 
   # Export to .csv
   stata_frame.to_stata(stjson_file,write_index=False,variable_labels=varlabels)
