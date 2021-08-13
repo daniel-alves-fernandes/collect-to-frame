@@ -1,6 +1,6 @@
 /******************************************************************************
 collectFrame.ado
-version 1.1.2
+version 1.1.3
 
 author: Daniel Fernandes
 contact: daniel.fernandes@eui.eu
@@ -76,7 +76,10 @@ def collect_to_frame(stjson_file,mode):
   if mode=="labels":
     columns.update(["value"])
     valuelabels = contents["Labels"]["Dimensions"]
-
+    
+    # This transformation separates variables in interaction effects and
+    # removes times series operators. This needs to be done so labels can
+    # be assined properly.
     for col in columns:
       stata_frame[col] = stata_frame[col].apply(lambda x:
 
