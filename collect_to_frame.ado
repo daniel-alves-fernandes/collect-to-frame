@@ -35,10 +35,6 @@ syntax name(name=frame id="collection"), [labels]
   * Convert .stjson file to workable format
   python: collect_to_frame("`stjson_file'","`labels'")
 
-  * Note: this function uses the temporary file to store back a .csv file.
-  * I opted not to use the Stata Framework Interface module (SFI) because
-  * that would break compatibility with Stata in Jupyter Notebooks.
-
   frame create `frame'
   frame `frame': quietly: use "`stjson_file'"
 end
