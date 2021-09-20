@@ -65,6 +65,8 @@ def collect_to_frame(stjson_file,mode):
 
   # Stata frame
   stata_frame = pd.DataFrame(data)
+  # Drop all columns that contain "@". The columns contain redundant information and cause an error when importing data
+  # to Stata.
   stata_frame = stata_frame[
     stata_frame.columns.drop(list(stata_frame.filter(regex="@")))
   ]
