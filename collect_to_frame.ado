@@ -1,6 +1,6 @@
 /******************************************************************************
 collectFrame.ado
-version 1.1.3
+version 1.2
 
 author: Daniel Fernandes
 contact: daniel.fernandes@eui.eu
@@ -8,7 +8,7 @@ contact: daniel.fernandes@eui.eu
 
 capture: program drop collect_to_frame
 program define collect_to_frame
-syntax name(name=frame id="collection"), [labels]
+syntax name(name=frame id="collection"), [LABELs]
 
   * Requirements
   version 17
@@ -60,10 +60,14 @@ def collect_to_frame(stjson_file,mode):
     line["value"] = item[1].get("d")
     data.append(line)
 
+    dimensions = list(filter(lambda a: not "@" in a, dimensions))
     columns.update(set(dimensions))
 
   # Stata frame
   stata_frame = pd.DataFrame(data)
+  stata_frame = stata_frame[
+    stata_frame.columns.drop(list(stata_frame.filter(regex="@")))
+  ]
 
   # Variable labels
   varlabels = contents["Labels"]["Dimensions"]["_dimensions"]
