@@ -10,13 +10,13 @@
 {title:Syntax}
 
 {pstd}
-  {cmd:collect_to_frame} {help frame:newframe}, {bf:[labels]}
+  {cmd:collect_to_frame} {help frame:newframe}, {bf:[{ul:label}s]}
 
 
 {title:Options}
 
 {pstd}
-{bf:labels}: uses labels of dimension levels, instead of their names.
+{bf:{ul:label}s}: uses labels of dimension levels, instead of their names.
 
 
 {title:Note}
