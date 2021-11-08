@@ -41,11 +41,12 @@ end
 
 python:
 def collect_to_frame(stjson_file,mode):
-  import json, re
+  import json
+  import re
   import pandas as pd
 
   # Open file
-  with open(stjson_file,"r") as file:
+  with open(stjson_file,"r", encoding="utf-8") as file:
     contents = file.read()
     contents = json.loads(contents)
 
@@ -53,7 +54,7 @@ def collect_to_frame(stjson_file,mode):
 
   # Change the structure of the .stjson file
   for item in contents["Items"].items():
-    dimensions = re.sub(r"\[[\w\d#]*(\]$)?","",item[0]).split("]#")
+    dimensions = re.sub(r"\[[\w\d#.]*(\]$)?","",item[0]).split("]#")
     levels = re.sub(r"([\w\d]*\[|(\]$))","",item[0]).split("]#")
 
     line = dict(zip(dimensions,levels))
@@ -65,8 +66,6 @@ def collect_to_frame(stjson_file,mode):
 
   # Stata frame
   stata_frame = pd.DataFrame(data)
-  # Drop all columns that contain "@". 
-  # These columns contain redundant information and can an error when passing variable names to Stata.
   stata_frame = stata_frame[
     stata_frame.columns.drop(list(stata_frame.filter(regex="@")))
   ]
@@ -78,7 +77,7 @@ def collect_to_frame(stjson_file,mode):
   if mode=="labels":
     columns.update(["value"])
     valuelabels = contents["Labels"]["Dimensions"]
-    
+
     # This transformation separates variables in interaction effects and
     # removes times series operators. This needs to be done so labels can
     # be assigned properly.
@@ -88,7 +87,9 @@ def collect_to_frame(stjson_file,mode):
         " # ".join([valuelabels.get(col).get(re.sub(r"[\w\d]*\.","",i),str(x))
           for i in x.split("#")])
 
-        if type(x) == str and type(valuelabels.get(col)) == dict
+        if
+          type(x) == str and
+          type(valuelabels.get(col)) == dict
         else x
         )
 
