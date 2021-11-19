@@ -1,0 +1,8 @@
+v 4.1.2
+d collect_to_frame: specifies the overall look of graphs.
+d
+d
+d Daniel Fernandes, 
+d European University Institute, Florence
+d
+d daniel.fernandes@eui.eu
