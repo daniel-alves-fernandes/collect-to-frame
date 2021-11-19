@@ -1,6 +1,13 @@
 # Collect to Frame
 Collect to Frame puts the information of the active collection onto a new Stata frame
 
+## Installation
+
+To install this package run the following command:
+
+```
+net install collect_to_frame, from("https://raw.githubusercontent.com/daniel-alves-fernandes/collect-to-frame/main/") 
+```
 
 ## Example
 
