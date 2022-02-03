@@ -1,6 +1,6 @@
 /******************************************************************************
 collectFrame.ado
-version 1.2
+version 1.2.1
 
 author: Daniel Fernandes
 contact: daniel.fernandes@eui.eu
@@ -23,6 +23,12 @@ syntax name(name=frame id="collection"), [LABELs]
   else{
     local command glevelsof
     local parse J
+  }
+  
+  quietly: collect dims
+  if ("`s(dimnames)'" == ""){
+    noisily: display as error "collection is empty"
+    exit 197
   }
 
   * Confirm new frame name
@@ -54,7 +60,7 @@ def collect_to_frame(stjson_file,mode):
 
   # Change the structure of the .stjson file
   for item in contents["Items"].items():
-    dimensions = re.sub(r"\[[\w\d#.]*(\]$)?","",item[0]).split("]#")
+    dimensions = re.sub(r"\[[\w\d#.-]*(\]$)?","",item[0]).split("]#")
     levels = re.sub(r"([\w\d]*\[|(\]$))","",item[0]).split("]#")
 
     line = dict(zip(dimensions,levels))
