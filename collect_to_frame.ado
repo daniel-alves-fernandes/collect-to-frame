@@ -1,6 +1,6 @@
 /******************************************************************************
 collectFrame.ado
-version 1.2.1
+version 1.2.2
 
 author: Daniel Fernandes
 contact: daniel.fernandes@eui.eu
@@ -39,7 +39,7 @@ syntax name(name=frame id="collection"), [LABELs]
   quietly: collect save "`stjson_file'", replace
 
   * Convert .stjson file to workable format
-  python: collect_to_frame("`stjson_file'","`labels'")
+  python: collect_to_frame(r"`stjson_file'","`labels'")
 
   frame create `frame'
   frame `frame': quietly: use "`stjson_file'"
