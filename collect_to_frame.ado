@@ -14,16 +14,6 @@ syntax name(name=frame id="collection"), [LABELs]
   version 17
   capture: which python
   if (_rc == 111) error 111
-
-  capture: which glevelsof
-  if (_rc == 111){
-    local command levelsof
-    local parse r
-  }
-  else{
-    local command glevelsof
-    local parse J
-  }
   
   quietly: collect dims
   if ("`s(dimnames)'" == ""){
